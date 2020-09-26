@@ -1,10 +1,10 @@
 import React, {useState, useEffect}  from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-import {Form, Button, Container, ListGroup, Alert} from 'react-bootstrap';
+import {Container, ListGroup, Alert} from 'react-bootstrap';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://diamond-server.azurewebsites.net';
 
 // on component loaded, load all clients
 // select them, press button and generate url
@@ -46,7 +46,7 @@ function App() {
     let newMapUrl = clients
     .filter(client => !client.deselected)
     .reduce((url, client, idx)=>{
-      return url + (idx == 0 ? "" : "|") +encodeURIComponent(client.address);
+      return url + (idx === 0 ? "" : "|") +encodeURIComponent(client.address);
     }, urlRoutePrefix);
     setMapUrl(newMapUrl);
   }
