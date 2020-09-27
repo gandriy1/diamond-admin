@@ -1,7 +1,7 @@
 import React, {useState, useEffect}  from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import {Container, ListGroup, Alert} from 'react-bootstrap';
+import {Container, ListGroup, Button} from 'react-bootstrap';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://diamond-server.azurewebsites.net';
@@ -54,17 +54,20 @@ function App() {
   useEffect(fetchUsers, []);
 
   return (
-    <Container className="p-6">
+    <Container className="p-6 mt-3">
     <ListGroup as="ul">
       {clients.map((client, index) => {
-          return (<ListGroup.Item key={index} active={!client.deselected} as="li" onClick={() => onItemClick(index)}>{client.name} - {client.address}</ListGroup.Item>)
+          return (
+          <ListGroup.Item key={index} active={!client.deselected} as="li" onClick={() => onItemClick(index)}>
+            <p class="h6">{client.name}</p>
+            <p>{client.address}</p>
+          </ListGroup.Item>
+          )
       })}
     </ListGroup>
 
-    <div className="mt-3">
-      <Alert variant='success'>
-        Click <Alert.Link href={mapUrl} target="_blank">Here</Alert.Link> to start navigation
-      </Alert>
+    <div className="mt-3 float-right">
+      <Button variant="success" href={mapUrl} target="_blank">Open Maps</Button>
     </div>
 
     </Container>
